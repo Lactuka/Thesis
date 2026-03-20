@@ -1,0 +1,16 @@
+# Python junk
+__pycache__/
+*.pyc
+.ipynb_checkpoints
+
+# Large Data & VASP files (KEEP THESE OUT OF GIT)
+WAVECAR
+CHGCAR
+LOCPOT
+POTCAR
+*.nb
+*.nc
+*.npy
+*.npz
+*.csv
+*.vasp"
