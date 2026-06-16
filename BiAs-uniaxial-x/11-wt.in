@@ -1,0 +1,156 @@
+&TB_FILE
+Hrfile = 'wannier90_hr.dat'
+Package = 'VASP'             ! obtained from VASP, it could be 'VASP', 'QE', 'Wien2k', 'OpenMx'
+/
+
+LATTICE
+Angstrom
+        7.7222271653        0.0000000085       -0.0001444903
+        0.0000000134        4.0158805860       -0.0000000284
+       -0.0003694039       -0.0000001192       17.0942015038
+
+ATOM_POSITIONS
+4                               ! number of atoms for projectors
+Direct                              ! Direct or Cartesian coordinate
+Bi  0.1639990440709562  0.9999999988210959  0.5429972133616809
+Bi  0.6639990440709562  0.4999999988210959  0.5429972133616809
+As  0.3360009559290438  0.5000000011789041  0.4570027866383191
+As  0.8360009559290438  0.0000000011789041  0.4570027866383191
+
+PROJECTORS
+ 9 9 9 9           ! number of projectors
+Bi s pz px py dz2 dxz dyz dx2-y2 dxy   
+Bi s pz px py dz2 dxz dyz dx2-y2 dxy   
+As s pz px py dz2 dxz dyz dx2-y2 dxy    
+As s pz px py dz2 dxz dyz dx2-y2 dxy
+&CONTROL
+SlabSS_calc           = T
+Z2_3D_calc            = T
+Slabspintexture_calc  = T
+BerryCurvature_calc   = T
+/
+
+&SYSTEM
+NSLAB = 20              ! for thin film system
+NumOccupied = 30        ! NumOccupied
+SOC = 1                 ! soc
+E_FERMI = -2.5260       ! e-fermi
+Bx= 0, By= 0, Bz= 0     ! Bx By Bz
+surf_onsite= 0.0        ! surf_onsite
+/
+
+&PARAMETERS
+Eta_Arc = 0.001     ! infinite small value, like brodening
+E_arc = 0.0         ! energy for calculate Fermi Arc
+OmegaNum = 150      ! omega number
+OmegaMin = -1       ! energy interval
+OmegaMax =  1       ! energy interval
+Nk1 = 101           ! number k points  odd number would be better
+Nk2 = 101           ! number k points  odd number would be better
+Nk3 = 3             ! number k points  odd number would be better
+NP = 2              ! number of principle layers
+Gap_threshold = 0.10 ! threshold for GapCube output
+/
+
+
+SURFACE            ! MoS2 conventional (010) surface
+ 0  1  0
+ 0  0  1
+ 1  0  0
+
+KPATH_SLAB
+2        ! numker of k line for 2D case
+X  -0.5  0.0 G  0.0  0.0  ! k path for 2D case
+G   0.0  0.0 X  0.5  0.0
+
+KPLANE_SLAB
+-0.5 -0.5      ! Original point for 2D k plane
+ 1.0  0.0      ! The first vector to define 2D k plane
+ 0.0  1.0      ! The second vector to define 2D k plane  for arc plots
+
+KPLANE_BULK
+-0.50 -0.50  0.00   ! Original point for 3D k plane
+ 1.00  0.00  0.00   ! The first vector to define 3d k space plane
+ 0.00  1.00  0.00   ! The second vector to define 3d k space plane
+
+KCUBE_BULK
+-0.50 -0.50 -0.50   ! Original point for 3D k plane
+ 1.00  0.00  0.00   ! The first vector to define 3d k space plane
+ 0.00  1.00  0.00   ! The second vector to define 3d k space plane
+ 0.00  0.00  1.00   ! The third vector to define 3d k cube
+
+
+WANNIER_CENTRES     ! copy from wannier90.wout
+Cartesian
+    -1.423185,    -0.141502,     7.863160
+    -1.423176,    -0.141494,     7.863157
+     2.452366,    -1.870603,     7.845236
+     2.452361,    -1.870594,     7.845234
+     2.234841,     1.910046,     7.793552
+     2.234859,     1.910054,     7.793554
+    -1.606523,     0.074363,     7.766286
+    -1.606524,     0.074360,     7.766289
+    -1.134451,    -0.309021,     7.816126
+    -1.134441,    -0.309031,     7.816131
+     2.724087,    -1.701861,     7.798411
+     2.724072,    -1.701877,     7.798416
+     2.736480,    -1.930398,     7.643322
+     2.736476,    -1.930406,     7.643330
+    -1.097892,    -0.093921,     7.574287
+    -1.097902,    -0.093907,     7.574284
+    -1.389600,    -0.117188,     7.573705
+    -1.389607,    -0.117184,     7.573710
+     2.468940,    -1.874423,     7.573784
+     2.468930,    -1.874435,     7.573781
+    -1.266259,    -0.081306,     8.054173
+    -1.266250,    -0.081301,     8.054172
+     2.597029,    -1.931707,     8.139273
+     2.597021,    -1.931724,     8.139266
+     1.321152,     0.034441,    -7.877963
+     1.321150,     0.034444,    -7.877957
+    -2.442175,     1.842526,    -7.932465
+    -2.442162,     1.842509,    -7.932461
+     1.160362,     0.016191,    -7.811993
+     1.160365,     0.016189,    -7.811991
+    -2.684823,     1.994457,    -7.797708
+    -2.684824,     1.994457,    -7.797708
+    -2.415584,    -1.939785,    -8.028887
+    -2.415576,    -1.939793,    -8.028879
+     1.452931,    -0.055644,    -8.062608
+     1.452953,    -0.055589,    -8.062605
+     1.649245,     0.235486,    -7.423794
+     1.649226,     0.235464,    -7.423828
+    -2.377168,     1.892042,    -7.557204
+    -2.377183,     1.892040,    -7.557206
+    -2.341321,    -1.833275,    -7.569538
+    -2.341357,    -1.833250,    -7.569536
+     1.431327,    -0.177308,    -7.604243
+     1.431332,    -0.177307,    -7.604229
+    -2.675928,    -1.454662,    -7.859389
+    -2.675913,    -1.454676,    -7.859410
+     1.253670,    -0.463137,    -7.823475
+     1.253645,    -0.463152,    -7.823483
+     2.925248,     1.937867,     7.854820
+     2.925271,     1.937869,     7.854813
+    -0.920736,     0.096965,     7.885066
+    -0.920738,     0.096969,     7.885078
+    -1.309327,     0.212711,     8.057383
+    -1.309338,     0.212729,     8.057404
+     2.601567,     1.750483,     7.991012
+     2.601546,     1.750461,     7.991020
+    -1.227012,     0.359097,     7.580380
+    -1.226981,     0.359085,     7.580367
+     2.634557,     1.702605,     7.533466
+     2.634560,     1.702589,     7.533461
+    -2.809379,     1.919907,    -8.146553
+    -2.809390,     1.919929,    -8.146541
+     0.934159,    -0.015820,    -7.269594
+     0.934154,    -0.015736,    -7.269574
+    -2.919843,    -1.891436,    -7.303448
+    -2.919817,    -1.891476,    -7.303427
+     1.035344,    -0.095410,    -8.129070
+     1.035316,    -0.095438,    -8.129086
+     1.086427,     0.521532,    -7.821096
+     1.086429,     0.521541,    -7.821078
+    -2.759284,     1.478146,    -7.632744
+    -2.759242,     1.478174,    -7.632736
