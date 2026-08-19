@@ -1,13 +1,13 @@
 phonopy:
   version: "2.47.1"
-  frequency_unit_conversion_factor: 521.470831
+  frequency_unit_conversion_factor: 15.633302
   symmetry_tolerance: 1.00000e-05
   configuration:
-    atom_name: "Bi As"
+    cell_filename: "POSCAR"
     dim: "3 5 1"
-    band: "0.50000000  0.00000000  0.00000000     0.00000000  0.00000000  0.00000000     0.50000000  0.50000000  0.00000000      0.00000000  0.00000000  0.00000000      0.00000000  0.50000000  0.00000000"
-    eigenvectors: ".true."
-    frequency_conversion_factor: "521.47083116"
+    full_force_constants: ".true."
+    write_force_constants: ".true."
+    hdf5: ".true."
 
 physical_unit:
   atomic_mass: "AMU"
